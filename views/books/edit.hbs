@@ -1,0 +1,38 @@
+<div class="newbook">
+    <p style="padding-bottom:20px ;">Books>Edit</p>
+    <form method="post">
+        <div class="one">
+            <p style="font-weight: bolder; font-size: 20px; padding-top:6px;">Edit Book</p>
+            <div>
+                <button class="save1"><a>Save</a></button>
+            </div>
+        </div>
+
+        <div>
+            <fieldset class="two">
+                <label for="title">Title: *</label>
+                <input value="{{Book.title}}" class="three" name="title" id="title" required />
+            </fieldset>
+            <fieldset class="two">
+                <label for="author">Author: *</label>
+                <input value="{{Book.author}}" class="three" name="author" id="author" required />
+            </fieldset>
+            <fieldset class="two">
+                <label for="status">Status: *</label>
+                <select class="three" name="status" id="status" required>
+                    {{#each Book}}
+                    {{selectCorrectOption this.status ../Book.status}}
+                    {{/each}}
+                </select>
+            </fieldset>
+            <fieldset class="two">
+                <label style="width: 25%;" for="checkedOutBy" class="col-2">Checked Out By: *</label>
+                <select class="three" name="checkedOutBy" id="checkedOutBy" required>
+                    {{#each Customer}}
+                    {{selectCorrectOption this.firstName ../Book.checkedOutBy}}
+                    {{/each}}
+                </select>
+            </fieldset>
+        </div>
+    </form>
+</div>

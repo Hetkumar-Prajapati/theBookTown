@@ -1,0 +1,35 @@
+<div class="newbook">
+    <p style="padding-bottom:20px ;">Books>New</p>
+    <form method="post">
+        <div class="one">
+            <p style="font-weight: bolder; font-size: 20px; padding-top:6px;">New Book</p>
+            <button class="save1"><a>Save</a></button>
+        </div>
+
+        <div>
+            <fieldset class="two">
+                <label for="title">Title: *</label>
+                <input placeholder=" enter the title" class="three" name="title" id="title" required />
+            </fieldset>
+            <fieldset class="two">
+                <label for="author">Author: *</label>
+                <input placeholder=" enter the author" class="three" name="author" id="author" required />
+            </fieldset>
+            <fieldset class="two">
+                <label for="status">Status: *</label>
+                <select class="three" name="status" id="status" required>
+                    <option>Available</option>
+                    <option>Not Available</option>
+                </select>
+            </fieldset>
+            <fieldset class="two">
+                <label style="width: 25%;" for="checkedOutBy" class="col-2">Checked Out By: *</label>
+                <select class="three" name="checkedOutBy" id="checkedOutBy" required>
+                    {{#each customers}}
+                    <option>{{this.firstName}}</option>
+                    {{/each}}
+                </select>
+            </fieldset>
+        </div>
+    </form>
+</div>
