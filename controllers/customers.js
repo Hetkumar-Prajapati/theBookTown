@@ -4,6 +4,14 @@ const router = express.Router()
 // import customer model
 const Customer = require('../models/customer')
 
+// auth check to be called before any CUD method
+function isAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
+    }
+    res.redirect('/auth/login')
+}
+
 // GET: /customers => show list of books
 router.get('/', (req, res) => {
     // query the model to fetch & pass the customer data to the view
@@ -14,15 +22,17 @@ router.get('/', (req, res) => {
         else {
             res.render('customers/index', { 
                 title: 'Customers',
-                customers: customers
+                customers: customers,
+                user: req.user
             })
         }
     })  
 })
 
 // GET: /customers/create => show blank customer form
-router.get('/create', (req, res) => {
-    res.render('customers/create', { title: 'Add New Customer'})
+router.get('/create',isAuthenticated, (req, res) => {
+    res.render('customers/create', { title: 'Add New Customer',
+    user: req.user})
 })
 
 // POST: /customers/create => process form submission

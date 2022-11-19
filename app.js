@@ -10,28 +10,32 @@ var books = require('./controllers/books');
 var customers = require('./controllers/customers');
 var auth = require('./controllers/auth');
 
+const passport = require('passport')
+const session = require('express-session')
+
+var app = express();
+
 // db conn using .env file in development mode
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
-// // passport config for auth
-// app.use(session({
-//   secret: process.env.PASSPORT_SECRET,
-//   resave: true,
-//   saveUninitialized: false
-// }))
+// passport config for auth
+app.use(session({
+  secret: process.env.PASSPORT_SECRET,
+  resave: true,
+  saveUninitialized: false
+}))
 
-// app.use(passport.initialize())
-// app.use(passport.session())
+app.use(passport.initialize())
+app.use(passport.session())
 
-// const User = require('./models/user')
-// passport.use(User.createStrategy())
+const User = require('./models/user')
+passport.use(User.createStrategy())
 
-// // let passport read/write user data to/from session vars
-// passport.serializeUser(User.serializeUser())
-// passport.deserializeUser(User.deserializeUser())
-
+// let passport read/write user data to/from session vars
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE_URL)
@@ -41,9 +45,6 @@ mongoose.connect(process.env.DATABASE_URL)
 ).catch(() => {
   console.log('Cannot connect to MongoDB')
 })
-
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

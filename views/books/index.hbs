@@ -1,7 +1,9 @@
 <div class="book-index">
     <div class="one">
         <p style="font-weight: bolder; font-size: 20px; padding-top:6px;">Books</p>
+        {{#if user}}
         <button class="btn2"><a style="text-decoration:none ; color: white;" href="books/create">Create New</a></button>
+        {{/if}}
     </div>
     
     <div class="book-table">
@@ -14,7 +16,9 @@
                     <th scope="col">Author</th>
                     <th scope="col">Status</th>
                     <th scope="col">Customer</th>
+                    {{#if user}}
                     <th scope="col">Action</th>
+                    {{/if}}
                 </tr>
             </thead>
             <tbody>
@@ -24,10 +28,12 @@
                     <td>{{this.author}}</td>
                     <td>{{this.status}}</td>
                     <td>{{this.checkedOutBy}}</td>
+                    {{#if ../user}}
                     <td>
                         <button class="btn3"><a  href="/books/edit/{{this._id}}" style="text-decoration: none;">Edit</a></button>
                         <button class="btn3"><a href="/books/delete/{{this._id}}" style="text-decoration: none;" onclick=deleteFunction() class="text-danger">Delete</a></button>
                     </td>
+                    {{/if}}
                 </tr>
                 {{/each}}
             </tbody>

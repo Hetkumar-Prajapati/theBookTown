@@ -5,6 +5,14 @@ const router = express.Router()
 const Book = require('../models/book')
 const Customer = require('../models/customer')
 
+// auth check to be called before any CUD method
+function isAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
+    }
+    res.redirect('/auth/login')
+}
+
 // GET: /books => show list of books
 router.get('/', (req, res) => {
     // query the model to fetch & pass the book data to the view
@@ -15,14 +23,15 @@ router.get('/', (req, res) => {
         else {
             res.render('books/index', { 
                 title: 'Books',
-                books: books
+                books: books,
+                user: req.user
             })
         }
     })  
 })
 
 // GET: /books/create => show blank book form
-router.get('/create', (req, res) => {
+router.get('/create', isAuthenticated ,(req, res) => {
     Customer.find((err,customers)=>{
         if(err){
             console.log(err)
@@ -30,14 +39,15 @@ router.get('/create', (req, res) => {
         else{
             res.render('books/create', {
             title: 'Add New Book',
-            customers: customers
+            customers: customers,
+            user: req.user
         })            
         }
     }).sort('firstName')
 })
 
 // POST: /books/create => process form submission
-router.post('/create', (req, res) => {
+router.post('/create', isAuthenticated, (req, res) => {
     // create a new Book document from the fields in the form post
     Book.create(req.body, (err, newBook) => {
         if (err) {
@@ -50,7 +60,7 @@ router.post('/create', (req, res) => {
 })
 
 // GET: /books/delete/abc123 => remove selected Book document
-router.get('/delete/:_id', (req, res) => {
+router.get('/delete/:_id',isAuthenticated, (req, res) => {
     Book.remove({ _id: req.params._id }, (err) => {
         if (err) {
             console.log(err)
@@ -62,7 +72,7 @@ router.get('/delete/:_id', (req, res) => {
 })
 
 // GET: /books/edit/abc123 => display populated form for editing
-router.get('/edit/:_id', (req, res) => {
+router.get('/edit/:_id',isAuthenticated , (req, res) => {
     // get customers for Form dropdown
     Customer.find((err, customers) => {
         if (err) {
@@ -78,7 +88,8 @@ router.get('/edit/:_id', (req, res) => {
                     res.render('books/edit', { 
                         title: 'Book Details',
                         Customer: customers,
-                        Book: book
+                        Book: book,
+                        user: req.user
                     })
                 }
             })           
@@ -87,7 +98,7 @@ router.get('/edit/:_id', (req, res) => {
 })
 
 // POST: /books/edit/abc123 => update the db for the selected doc
-router.post('/edit/:_id',(req, res) => {
+router.post('/edit/:_id',isAuthenticated, (req, res) => {
     Book.findByIdAndUpdate({ _id: req.params._id }, req.body, null, (err, employer) => {
         if (err) {
             console.log(err)

@@ -18,7 +18,7 @@ router.post('/register', (req, res) => {
         }
         else {
             req.login(user, (err) => {
-                res.redirect('/employers')
+                res.redirect('/books')
             })
         }
     })})
@@ -39,7 +39,7 @@ router.get('/login', (req, res) => {
 
 // POST: /auth/login => use passport to do auth check
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/employers',
+    successRedirect: '/',
     failureRedirect: '/auth/login',
     failureMessage: 'Invalid Login'
 }))

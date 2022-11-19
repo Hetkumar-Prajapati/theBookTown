@@ -79,3 +79,10 @@ body {
 .book-table{
   padding: 50px;
 }
+
+.home{
+  padding: 20px;
+  margin: 20px 0px;
+  background-color: white;
+  height: 58vh;
+}
