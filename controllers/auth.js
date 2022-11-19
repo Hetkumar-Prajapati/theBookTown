@@ -18,7 +18,7 @@ router.post('/register', (req, res) => {
         }
         else {
             req.login(user, (err) => {
-                res.redirect('/books')
+                res.redirect('/')
             })
         }
     })})
