@@ -55,4 +55,17 @@ router.get('/logout', (req, res, next) => {
     })
 })
 
+// GET: /auth/google => invoke Google sign in attempt
+router.get('/google', passport.authenticate('google', {
+    scope: ['profile']
+}), (req, res) => {}
+)
+
+// GET: /auth/google/callback => handle return of user from google
+router.get('/google/callback', passport.authenticate('google', {
+    failureRedirect: '/auth/login'
+}), (req, res) => {
+    res.redirect('/')
+})
+
 module.exports = router
