@@ -26,7 +26,7 @@
                 </select>
             </fieldset>
             <fieldset class="two">
-                <label style="width: 25%;" for="checkedOutBy" class="col-2">Checked Out By: *</label>
+                <label style="padding-left:0%" for="checkedOutBy" class="col-4">Checked Out By: *</label>
                 <select class="three" name="checkedOutBy" id="checkedOutBy" required>
                     {{#each Customer}}
                     {{selectCorrectOption this.firstName ../Book.checkedOutBy}}

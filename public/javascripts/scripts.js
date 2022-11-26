@@ -5,3 +5,7 @@ function deleteFunction() {
         "Are you sure you want to delete this Row?"
     )
 }
+
+$(document).ready(function () {
+        $('#example').DataTable();
+    });
