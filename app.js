@@ -56,6 +56,42 @@ passport.use(new google({
   }
 ))
 
+//facebook config
+const facebookStrategy = require('passport-facebook').Strategy 
+
+passport.use(new facebookStrategy({
+  clientID:process.env.FACEBOOK_APP_ID,
+  clientSecret: process.env.FACEBOOK_APP_SECRET,
+  callbackURL: process.env.FACEBOOK_CALLBACK_URL
+},
+  (accessToken, refreshToken, profile, done) => {
+    User.findOrCreate({ oauthId: profile.id }, {
+      username: profile.displayName,
+      oauthProvider: 'Facebook',
+      created: Date.now()
+    }, (err, user) => {
+      return done(err, user)
+    })
+  }
+))
+
+//github config 
+const GitHubStrategy = require('passport-github2').Strategy 
+passport.use(new GitHubStrategy({
+  clientID: process.env.GITHUB_CLIENT_ID,
+  clientSecret: process.env.GITHUB_CLIENT_SECRET,
+  callbackURL: process.env.GITHUB_CALLBACK_URL
+},
+(accessToken, refreshToken, profile, done) => {
+  User.findOrCreate({ oauthId: profile.id }, {
+    username: profile.displayName,
+    oauthProvider: 'GitHub',
+    created: Date.now()
+  }, (err, user) => {
+    return done(err, user)
+  })
+}
+))
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE_URL)

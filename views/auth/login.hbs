@@ -1,7 +1,7 @@
-<div class="home">
+<div class="home2">
         <h1>Login</h1>
         {{#if messages}}
-        <div class="alert alert-danger">{{messages}}</div>
+        <div  class="alert alert-danger">{{messages}}</div>
         {{else}}
         <div class="alert alert-secondary">Please enter your credentials</div>
         {{/if}}
@@ -16,9 +16,27 @@
                 </fieldset>
                 <fieldset style="padding: 10px;" class="form-group">
                         <button class="btn btn-info offset-3">Login</button>
-                        <a href="/auth/google">
-                                <img src="/images/google.png" alt="Sign In With Google">
-                        </a>
+                        <hr>
+                        <div class="signup-box">
+                                <div style="padding: 5px;">
+                                        <h6>Sign Up with</h6>
+                                </div>
+                                <div>
+                                        <a href="/auth/google">
+                                                <img class="signup" src="/images/logo-google.svg"
+                                                        alt="Sign In With Google">
+                                        </a>
+                                </div>
+                                <div><a href="/auth/facebook">
+                                                <img class="signup" src="/images/logo-facebook.svg"
+                                                        alt="Sign In With Facebook">
+                                        </a></div>
+                                <div><a href="/auth/github">
+                                                <img class="signup" src="/images/logo-github.svg"
+                                                        alt="Sign In With Github">
+                                        </a></div>
+                        </div>
+
                         <hr />
                         Need an account? <a href="/auth/register" title="Register">Register</a>
                 </fieldset>

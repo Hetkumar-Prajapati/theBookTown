@@ -86,3 +86,21 @@ body {
   background-color: white;
   height: 58vh;
 }
+.home2{
+  padding: 10px 20px;
+  margin: 20px 0px;
+  background-color: white;
+  height: 58vh;
+}
+
+.signup{
+  height: 30px;
+  width: 30px;
+}
+
+.signup-box{
+  width: 200px;
+  margin-left: 150px;
+  display: flex;
+  justify-content: space-between;
+}

@@ -68,4 +68,27 @@ router.get('/google/callback', passport.authenticate('google', {
     res.redirect('/')
 })
 
+// GET: /auth/facebook => invoke facebook sign in attempt
+router.get('/facebook', passport.authenticate('facebook', {
+    scope: ['profile']
+}), (req, res) => {}
+)
+// GET: /auth/facebook/callback => handle return of user from facebook
+router.get('/facebook/callback', passport.authenticate('facebook', {
+    failureRedirect: '/auth/login'
+}), (req, res) => {
+    res.redirect('/')
+})
+// GET: /auth/github => invoke github sign in attempt
+router.get('/github', passport.authenticate('github', {
+    scope: ['profile']
+}), (req, res) => {}
+)
+// GET: /auth/github/callback => handle return of user from github
+router.get('/github/callback', passport.authenticate('github', {
+    failureRedirect: '/auth/login'
+}), (req, res) => {
+    res.redirect('/')
+})
+
 module.exports = router
