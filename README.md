@@ -1,9 +1,15 @@
 # theBookTown
 
-•	Create a new web application
-•	Implement the ExpressJS web framework
-•	Use MongoDB and Mongoose to store and connect to your data
-•	Use HBS templating for your UI 
-•	Add route / controller files to handle application logic
-•	Customize the look and feel of your application with CSS (Bootstrap is fine but the application must look different than our in-class application example).  If you use a 3rd party stylesheet, reference the source in both your header and your README.md file.  If you do your own css, note this in the README.md file.
-•	Implement Authentication so only your Home page, Register page, Login page, and Read-Only page that displays your data are public.  All other pages that perform Create-Update-Delete operations must be Private.
+To visually see My Portfolio visit my website at  https://thebooktown.onrender.com
+
+### This is my Book Management website:
+------------------------------
+It illustrates about me and my skills.<br/>
+•	Created a new web application </br>
+•	Implemented the ExpressJS web framework </br>
+•	Used MongoDB and Mongoose to store and connect to my data </br>
+•	Used HBS templating for my UI </br>
+•	Added route / controller files to handle application logic </br>
+•	Customized the look and feel of my application with CSS. </br>
+• used DataTables designed and created by SpryMedia Ltd to give a good user interface to view table with populated data.
+•	Implemented Authentication so only your Home page, Register page, Login page, and Read-Only page that displays my data which are public.  All other pages that perform Create-Update-Delete operations are Private.</br>
